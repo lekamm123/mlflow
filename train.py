@@ -52,12 +52,12 @@ if __name__ == "__main__":
 
     # Define a run name for this iteration of training.
     # If this is not set, a unique name will be auto-generated for your run.
-    # run_name = "mlflow_git_rf_test"
+    run_name = "mlflow_git_rf_test"
 
     # Define an artifact path that the model will be saved to.
     # artifact_path = "mlflow_git"
 
-    with mlflow.start_run():
+    with mlflow.start_run(run_name=run_name):
         mlflow.set_tracking_uri("http://127.0.0.1:8080")
         apple_experiment = mlflow.set_experiment("MLFLOWGIT")
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
