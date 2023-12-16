@@ -44,6 +44,18 @@ if __name__ == "__main__":
 
     alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    # Use the fluent API to set the tracking uri and the active experiment
+    mlflow.set_tracking_uri("http://127.0.0.1:8080")
+
+    # Sets the current active experiment to the "Apple_Models" experiment and returns the Experiment metadata
+    apple_experiment = mlflow.set_experiment("MLFLOWGIT")
+
+    # Define a run name for this iteration of training.
+    # If this is not set, a unique name will be auto-generated for your run.
+    run_name = "mlflow_git_rf_test"
+
+    # Define an artifact path that the model will be saved to.
+    artifact_path = "mlflow_git"
 
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
